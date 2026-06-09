@@ -1,0 +1,376 @@
+
+
+raw
+Morella spanish · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morella Colmenares — Spanish Lessons Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --green: #1B7A58;
+    --green-light: #E6F5EF;
+    --green-mid: #2DAE7F;
+    --gold: #C89B3C;
+    --gold-light: #FDF6E3;
+    --dark: #1A1A1A;
+    --mid: #555;
+    --light: #F9F7F4;
+    --white: #fff;
+    --radius: 14px;
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+ 
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #eee;
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--green); font-weight: 700; text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; font-weight: 400; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta { background: var(--green); color: #fff; border: none; border-radius: 8px; padding: 8px 20px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+  .nav-cta:hover { background: #155f44; }
+ 
+  /* HERO */
+  .hero {
+    background: var(--light);
+    padding: 6rem 2rem 5rem;
+    display: flex; align-items: center; justify-content: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+  }
+  .hero-text { max-width: 480px; }
+  .hero-eyebrow { font-size: 13px; font-weight: 500; color: var(--green); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 28px; height: 1.5px; background: var(--green); }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 52px); font-weight: 700; line-height: 1.15; color: var(--dark); margin-bottom: 20px; }
+  .hero-title em { color: var(--green); font-style: normal; }
+  .hero-sub { font-size: 17px; color: var(--mid); line-height: 1.75; margin-bottom: 32px; font-weight: 300; }
+  .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .btn-primary { background: var(--green); color: #fff; border: none; border-radius: 10px; padding: 14px 28px; font-size: 15px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.1s; }
+  .btn-primary:hover { background: #155f44; transform: translateY(-1px); }
+  .btn-secondary { color: var(--green); font-size: 15px; font-weight: 500; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+  .btn-secondary::after { content: '→'; transition: transform 0.2s; }
+  .btn-secondary:hover::after { transform: translateX(4px); }
+  .hero-price-badge { background: var(--white); border: 1.5px solid var(--green); border-radius: 10px; padding: 6px 14px; font-size: 13px; color: var(--green); font-weight: 500; }
+ 
+  /* AVATAR CARD */
+  .hero-card {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+    padding: 2rem;
+    text-align: center;
+    min-width: 220px;
+  }
+  .avatar-circle {
+    width: 96px; height: 96px;
+    border-radius: 50%;
+    background: var(--green-light);
+    border: 3px solid var(--green-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; font-weight: 700; color: var(--green);
+    margin: 0 auto 14px;
+  }
+  .hero-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .hero-card p { font-size: 13px; color: var(--mid); margin-bottom: 14px; }
+  .rating-row { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; color: var(--mid); }
+  .stars { color: var(--gold); font-size: 15px; letter-spacing: 1px; }
+  .online-dot { width: 9px; height: 9px; border-radius: 50%; background: #2cc86a; display: inline-block; margin-right: 5px; }
+  .online-label { font-size: 12px; color: #2cc86a; font-weight: 500; margin-top: 10px; }
+ 
+  /* STATS */
+  .stats-bar {
+    background: var(--green);
+    padding: 2rem;
+    display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+  }
+  .stat { text-align: center; color: #fff; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; line-height: 1; }
+  .stat-label { font-size: 13px; opacity: 0.75; margin-top: 4px; font-weight: 300; }
+ 
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 860px; margin: 0 auto; }
+  .section-label { font-size: 12px; font-weight: 500; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 36px); font-weight: 700; line-height: 1.25; margin-bottom: 20px; }
+ 
+  /* CLASSES */
+  .classes-section { background: var(--light); }
+  .classes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; margin-top: 2.5rem; }
+  .class-card {
+    background: var(--white); border-radius: var(--radius); padding: 1.5rem;
+    border: 1px solid #eee; position: relative; transition: box-shadow 0.2s;
+  }
+  .class-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.07); }
+  .class-card.featured { border-color: var(--green); }
+  .class-tag { position: absolute; top: -12px; left: 1.5rem; background: var(--green); color: #fff; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; }
+  .class-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; }
+  .class-card h3 { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
+  .class-card p { font-size: 14px; color: var(--mid); line-height: 1.6; margin-bottom: 16px; font-weight: 300; }
+  .class-price { font-size: 22px; font-weight: 700; color: var(--green); font-family: 'Playfair Display', serif; }
+  .class-price span { font-size: 13px; color: var(--mid); font-weight: 300; font-family: 'Inter', sans-serif; }
+ 
+  /* HOW IT WORKS */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2.5rem; }
+  .step { display: flex; flex-direction: column; gap: 10px; }
+  .step-num { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--green-light); line-height: 1; }
+  .step h3 { font-size: 16px; font-weight: 500; }
+  .step p { font-size: 14px; color: var(--mid); font-weight: 300; line-height: 1.7; }
+ 
+  /* REVIEWS */
+  .reviews-section { background: var(--light); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 2.5rem; }
+  .review-card { background: var(--white); border-radius: var(--radius); padding: 1.5rem; border: 1px solid #eee; }
+  .review-stars { color: var(--gold); font-size: 15px; margin-bottom: 10px; letter-spacing: 1px; }
+  .review-text { font-size: 14px; color: var(--mid); line-height: 1.7; margin-bottom: 14px; font-style: italic; font-weight: 300; }
+  .reviewer { font-size: 13px; font-weight: 500; color: var(--dark); }
+  .reviewer-loc { font-size: 12px; color: var(--mid); }
+ 
+  /* ABOUT */
+  .about-inner { display: flex; gap: 4rem; flex-wrap: wrap; align-items: center; }
+  .about-text { flex: 1; min-width: 280px; }
+  .about-text p { font-size: 16px; color: var(--mid); margin-bottom: 16px; font-weight: 300; line-height: 1.8; }
+  .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tag { background: var(--green-light); color: var(--green); font-size: 12px; padding: 5px 12px; border-radius: 20px; font-weight: 500; }
+  .about-visual { background: var(--light); border-radius: 20px; padding: 2rem; min-width: 220px; text-align: center; }
+  .quote { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--green-light); line-height: 0.5; margin-bottom: 8px; }
+  .quote-text { font-size: 16px; font-style: italic; color: var(--dark); line-height: 1.6; font-family: 'Playfair Display', serif; }
+ 
+  /* CTA */
+  .cta-section { background: var(--dark); text-align: center; }
+  .cta-section .section-label { color: var(--green-mid); }
+  .cta-section .section-title { color: var(--white); }
+  .cta-sub { color: rgba(255,255,255,0.55); font-size: 16px; font-weight: 300; margin-bottom: 32px; }
+  .cta-price-display { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: 6px; }
+  .cta-price-sub { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 32px; }
+  .btn-cta { background: var(--green-mid); color: #fff; border: none; border-radius: 12px; padding: 16px 36px; font-size: 16px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
+  .btn-cta:hover { background: var(--green); }
+ 
+  /* FOOTER */
+  footer { background: #111; padding: 2rem; text-align: center; font-size: 13px; color: rgba(255,255,255,0.3); }
+  footer strong { color: rgba(255,255,255,0.55); font-weight: 500; }
+ 
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .hero { padding: 4rem 1.5rem 3rem; gap: 2.5rem; }
+    .stats-bar { gap: 2rem; }
+    section { padding: 3.5rem 1.5rem; }
+    .about-inner { gap: 2rem; }
+  }
+ 
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+ 
+<nav>
+  <a class="nav-logo" href="#">Morella Colmenares</a>
+  <ul class="nav-links">
+    <li><a href="#classes">Classes</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Book a lesson</a>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Online Spanish lessons</div>
+    <h1 class="hero-title">Learn Spanish<br>the <em>right</em> way,<br>from day one.</h1>
+    <p class="hero-sub">Personal, structured lessons with a native speaker. Whether you're a complete beginner or want to polish your conversational Spanish — I'll guide you at your own pace.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#contact">Start for just 12€</a>
+      <a class="btn-secondary" href="#classes">See all classes</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="avatar-circle">MC</div>
+    <h3>Morella Colmenares</h3>
+    <p>Native speaker · 🇻🇪 Venezuela</p>
+    <div class="rating-row">
+      <span class="stars">★★★★★</span>
+      <span>5.0 · 80+ students</span>
+    </div>
+    <p class="online-label"><span class="online-dot"></span>Available online</p>
+    <div style="margin-top: 14px;">
+      <span class="hero-price-badge">12€ / hour</span>
+    </div>
+  </div>
+</section>
+ 
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">80+</div><div class="stat-label">Students taught</div></div>
+  <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Average rating</div></div>
+  <div class="stat"><div class="stat-num">12€</div><div class="stat-label">Per 1-hour lesson</div></div>
+  <div class="stat"><div class="stat-num">A1–C2</div><div class="stat-label">All levels welcome</div></div>
+</div>
+ 
+<!-- CLASSES -->
+<section class="classes-section" id="classes">
+  <div class="section-inner">
+    <div class="section-label">What I offer</div>
+    <h2 class="section-title">Spanish classes for every goal</h2>
+    <p style="color: var(--mid); font-weight: 300; max-width: 520px;">Each lesson is one hour, conducted via video call. I adapt the content to your level and goals — no generic textbook approach.</p>
+    <div class="classes-grid">
+      <div class="class-card featured">
+        <span class="class-tag">Most popular</span>
+        <div class="class-icon">💬</div>
+        <h3>Conversational Spanish</h3>
+        <p>Build real speaking confidence through guided conversation, role-plays, and everyday vocabulary.</p>
+        <div class="class-price">12€ <span>/ 1 hour</span></div>
+      </div>
+      <div class="class-card">
+        <div class="class-icon">📖</div>
+        <h3>Beginner Spanish</h3>
+        <p>Start from zero. Learn greetings, grammar basics, numbers, and the foundations you need.</p>
+        <div class="class-price">12€ <span>/ 1 hour</span></div>
+      </div>
+      <div class="class-card">
+        <div class="class-icon">✍️</div>
+        <h3>Grammar & Writing</h3>
+        <p>Structured grammar lessons with exercises. Perfect for students who want to write correctly and clearly.</p>
+        <div class="class-price">12€ <span>/ 1 hour</span></div>
+      </div>
+      <div class="class-card">
+        <div class="class-icon">💼</div>
+        <h3>Business Spanish</h3>
+        <p>Professional vocabulary, email writing, meetings, and presentations in Spanish.</p>
+        <div class="class-price">12€ <span>/ 1 hour</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-inner">
+    <div class="section-label">Simple process</div>
+    <h2 class="section-title">How it works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Book a lesson</h3>
+        <p>Choose a time that suits you. Your first lesson is a trial so we can find the right approach together.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>We assess your level</h3>
+        <p>I'll quickly understand where you are and what you need, so every minute counts.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Learn at your pace</h3>
+        <p>Structured, personal lessons built around your goals. You'll see progress from lesson one.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Keep going</h3>
+        <p>Schedule regular lessons and track your progress. Many students reach conversational level in 3–6 months.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ABOUT -->
+<section id="about" style="background: var(--gold-light);">
+  <div class="section-inner">
+    <div class="section-label">Meet your teacher</div>
+    <h2 class="section-title">About Morella</h2>
+    <div class="about-inner">
+      <div class="about-text">
+        <p>¡Hola! I'm Morella, a native Spanish speaker from Venezuela with a genuine passion for language and teaching. I've spent years helping students at all levels find their voice in Spanish — and I know how to make learning feel natural, not forced.</p>
+        <p>My lessons are patient, structured, and always adapted to you. I don't believe in one-size-fits-all approaches: if you learn better through conversation, we talk. If you need grammar drilled, we drill. If you want to watch films and discuss them in Spanish, we do that too.</p>
+        <p>What I care about most is that you leave every class feeling like you actually progressed.</p>
+        <div class="about-tags">
+          <span class="tag">Native speaker</span>
+          <span class="tag">Patient & encouraging</span>
+          <span class="tag">Personalised lessons</span>
+          <span class="tag">All levels</span>
+          <span class="tag">Latin American Spanish</span>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="quote">"</div>
+        <p class="quote-text">My goal is simple: help you speak Spanish with confidence and joy.</p>
+        <p style="font-size: 13px; color: var(--mid); margin-top: 14px; font-weight: 500;">— Morella Colmenares</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div class="section-inner">
+    <div class="section-label">Student reviews</div>
+    <h2 class="section-title">What students say</h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Morella is so patient and encouraging. I went from knowing nothing to holding simple conversations in just two months. She really adapts to your pace."</p>
+        <div class="reviewer">Ana G.</div>
+        <div class="reviewer-loc">Madrid, Spain</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Clear explanations, great exercises, and she always keeps track of what I need to improve. Best Spanish teacher I've had — and I've tried a few."</p>
+        <div class="reviewer">Tom B.</div>
+        <div class="reviewer-loc">London, UK</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I was nervous about speaking but Morella made me feel comfortable from the first lesson. Six months later I'm watching Spanish TV without subtitles!"</p>
+        <div class="reviewer">Luisa M.</div>
+        <div class="reviewer-loc">São Paulo, Brazil</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Ready to start?</div>
+    <h2 class="section-title">Your first Spanish lesson</h2>
+    <p class="cta-sub">One hour. One teacher. One language. Let's get started.</p>
+    <div class="cta-price-display">12€</div>
+    <p class="cta-price-sub">per 1-hour lesson · online · all levels</p>
+    <a class="btn-cta" href="mailto:morella@example.com?subject=Spanish Lesson Booking">Book a lesson with Morella</a>
+    <p style="margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.3);">Reply within 24 hours · Flexible scheduling</p>
+  </div>
+</section>
+ 
+<footer>
+  <p><strong>Morella Colmenares</strong> · Spanish lessons online · © 2026</p>
+</footer>
+ 
+</body>
+</html>
+ 
