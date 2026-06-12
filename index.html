@@ -1,7 +1,3 @@
-
-
-raw
-Morella spanish · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,6 +163,26 @@ Morella spanish · HTML
   .cta-price-sub { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 32px; }
   .btn-cta { background: var(--green-mid); color: #fff; border: none; border-radius: 12px; padding: 16px 36px; font-size: 16px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
   .btn-cta:hover { background: var(--green); }
+
+  /* PAYMENT OPTIONS */
+  .payment-options { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 28px; }
+  .pay-btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; padding: 12px 24px; font-size: 14px; font-weight: 500; text-decoration: none; transition: opacity 0.2s; }
+  .pay-btn:hover { opacity: 0.85; }
+  .pay-paypal { background: #ffc439; color: #1A1A1A; }
+  .pay-bizum { background: #1A6FE8; color: #fff; }
+  .payment-note { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,0.4); }
+  .payment-email-wrap { margin-top: 32px; }
+  .payment-email-label { font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 8px; }
+  .payment-email-input {
+    width: 100%; max-width: 320px;
+    padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06); color: #fff; font-size: 14px; font-family: 'Inter', sans-serif;
+    outline: none; transition: border-color 0.2s;
+  }
+  .payment-email-input::placeholder { color: rgba(255,255,255,0.35); }
+  .payment-email-input:focus { border-color: var(--green-mid); }
+  .payment-email-input.error { border-color: #e0654b; }
+  .payment-email-error { font-size: 12px; color: #e0654b; margin-top: 6px; display: none; }
  
   /* FOOTER */
   footer { background: #111; padding: 2rem; text-align: center; font-size: 13px; color: rgba(255,255,255,0.3); }
@@ -362,8 +378,97 @@ Morella spanish · HTML
     <p class="cta-sub">One hour. One teacher. One language. Let's get started.</p>
     <div class="cta-price-display">12€</div>
     <p class="cta-price-sub">per 1-hour lesson · online · all levels</p>
-    <a class="btn-cta" href="mailto:morella@example.com?subject=Spanish Lesson Booking">Book a lesson with Morella</a>
+    <a class="btn-cta" href="mailto:morellacolmenares57@gmail.com?subject=Spanish Lesson Booking">Book a lesson with Morella</a>
     <p style="margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.3);">Reply within 24 hours · Flexible scheduling</p>
+
+    <div class="payment-email-wrap">
+      <div class="payment-email-label">Enter your Gmail so Morella can match your payment to your booking:</div>
+      <input type="email" id="payerEmail" class="payment-email-input" placeholder="you@gmail.com" autocomplete="email">
+      <div class="payment-email-error" id="payerEmailError">Please enter a valid email address first.</div>
+    </div>
+
+    <div class="payment-options">
+      <a class="pay-btn pay-paypal" id="paypalBtn" href="https://paypal.me/MorellaJosefinaC/15EUR" target="_blank" rel="noopener">Pay with PayPal · 15€</a>
+      <a class="pay-btn pay-wise" id="wiseBtn" href="https://wise.com/pay/me/morellac1" target="_blank" rel="noopener">Pay with Wise · 12€</a>
+      <a class="pay-btn pay-bizum" id="bizumBtn" href="#">Pay with Bizum · 12€</a>
+    </div>
+    <p class="payment-note">PayPal price includes a small surcharge to cover transaction fees. Bizum: send to <strong>619 384 915</strong>. Please add your email in the payment note so Morella can match your booking — she typically replies within 1–2 hours to confirm.</p>
+
+    <script>
+      (function () {
+        const emailInput = document.getElementById('payerEmail');
+        const emailError = document.getElementById('payerEmailError');
+        const paypalBtn = document.getElementById('paypalBtn');
+        const wiseBtn = document.getElementById('wiseBtn');
+        const bizumBtn = document.getElementById('bizumBtn');
+        const paypalUrl = paypalBtn.getAttribute('href');
+        const wiseUrl = wiseBtn.getAttribute('href');
+        const bizumPhone = '619 384 915';
+
+        function isValidEmail(value) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        }
+
+        function notifyMorella(method, priceLabel) {
+          const email = emailInput.value.trim();
+          const subject = encodeURIComponent('Payment notification - ' + method);
+          const body = encodeURIComponent(
+            'Hi Morella,\n\n' +
+            'I just paid for my Spanish lesson via ' + method + ' (' + priceLabel + ').\n' +
+            'My email: ' + email + '\n\n' +
+            'Please confirm my booking. Thanks!'
+          );
+          window.location.href = 'mailto:morellacolmenares57@gmail.com?subject=' + subject + '&body=' + body;
+        }
+
+        function handlePay(e, method, priceLabel, redirectUrl, extraInstruction) {
+          const email = emailInput.value.trim();
+          if (!isValidEmail(email)) {
+            e.preventDefault();
+            emailInput.classList.add('error');
+            emailError.style.display = 'block';
+            emailInput.focus();
+            return;
+          }
+          emailInput.classList.remove('error');
+          emailError.style.display = 'none';
+
+          let message = 'Reminder: when you make the ' + method + ' payment, please add your email (' + email + ') in the "note" / "concept" field so Morella can match it to your booking.\n\n';
+          if (extraInstruction) {
+            message += extraInstruction + '\n\n';
+          }
+          message += 'Morella usually replies within 1–2 hours to confirm your lesson.';
+
+          alert(message);
+
+          // Send the confirmation email to Morella with the payer's address
+          notifyMorella(method, priceLabel);
+
+          // Open the actual payment page in a new tab
+          if (redirectUrl) {
+            window.open(redirectUrl, '_blank');
+          }
+
+          e.preventDefault();
+        }
+
+        paypalBtn.addEventListener('click', function (e) {
+          handlePay(e, 'PayPal', '15€', paypalUrl);
+        });
+
+        wiseBtn.addEventListener('click', function (e) {
+          handlePay(e, 'Wise', '12€', wiseUrl);
+        });
+
+        bizumBtn.addEventListener('click', function (e) {
+          handlePay(e, 'Bizum', '12€', null, 'Send the Bizum payment to ' + bizumPhone + ' from your banking app.');
+        });
+
+        bizumBtn.addEventListener('click', function (e) {
+          handlePay(e, 'Bizum', '12€', null);
+        });
+      })();
+    </script>
   </div>
 </section>
  
@@ -372,5 +477,4 @@ Morella spanish · HTML
 </footer>
  
 </body>
-</html>
  
